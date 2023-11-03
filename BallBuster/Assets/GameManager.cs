@@ -1,9 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
+using System;
+
+
 public class GameManager : MonoBehaviour
 {
+
+    [Serializable]   // bu classi listelebilirim artik demek
+    public class Hedefler
+    {
+       
+        public Sprite HedefGorsel;
+        public int TopDegeri;
+        public GameObject GorevTamam;
+        public string HedefTuru;
+    }
+
+
+    [Serializable]   // bu classi listelebilirim artik demek
+    public class Hedefler_UI
+    {
+        public GameObject Hedef;
+        public Image HedefGorsel;
+        public TextMeshProUGUI HedefDegerText;
+        public GameObject GorevTamam;
+      
+    }
 
     [Header("---LEVEL AYARLAR")]
     public Sprite[] SpriteObjeleri;
@@ -23,11 +48,25 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject GelecekTop;
     GameObject SeciliTop;
 
+    [Header("---GOREV ISLEMLERI")]
+    [SerializeField] private List<Hedefler> Hedeflerr;
+    [SerializeField] private List<Hedefler_UI> Hedeflerr_UI; 
+
+
 
     void Start()
     {
         KalanTopSayisi = Toplar.Length;
         TopGetir(true);
+
+
+        for (int i = 0; i < Hedeflerr.Count; i++)
+        {
+            Hedeflerr_UI[i].Hedef.SetActive(true);
+            Hedeflerr_UI[i].HedefGorsel.sprite = Hedeflerr[i].HedefGorsel;
+            Hedeflerr_UI[i].HedefDegerText.text = Hedeflerr[i].TopDegeri.ToString();
+        }
+
     }
     // 2-Kirmizi
     // 4-Sari
