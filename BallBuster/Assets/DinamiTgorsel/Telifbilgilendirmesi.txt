@@ -1,0 +1,3 @@
+Dinamit görseli https://www.flaticon.com sitesinden alınmıştır. Örnek amaçlıdır, görselin telifi dosyayı alan kişiyi ilgilendirir.
+
+ <a href="https://www.flaticon.com/free-icons/dynamite" title="dynamite icons">Dynamite icons created by Freepik - Flaticon</a>

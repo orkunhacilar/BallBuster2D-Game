@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     int KalanTopSayisi;
     int HavuzIndex;
 
+    [Header("---DIGER OBJELER")]
+    [SerializeField] private ParticleSystem PatlamaEfekt;
 
     [Header("---TOP ATIS SISTEMI")]
     [SerializeField] private GameObject TopAtici;
@@ -110,5 +112,12 @@ public class GameManager : MonoBehaviour
             }
         }
         
+    }
+
+    public void PatlamaEfekti(Vector2 Pozisyon)
+    {
+        PatlamaEfekt.gameObject.transform.position = Pozisyon;
+        PatlamaEfekt.gameObject.SetActive(true);
+        PatlamaEfekt.Play();
     }
 }
