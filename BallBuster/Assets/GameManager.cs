@@ -50,7 +50,9 @@ public class GameManager : MonoBehaviour
 
     [Header("---GOREV ISLEMLERI")]
     [SerializeField] private List<Hedefler> Hedeflerr;
-    [SerializeField] private List<Hedefler_UI> Hedeflerr_UI; 
+    [SerializeField] private List<Hedefler_UI> Hedeflerr_UI;
+    int TopDegeri, KutuDegeri;
+    bool KutuHedefiVarmi, TopHedefiVarmi;
 
 
 
@@ -65,6 +67,15 @@ public class GameManager : MonoBehaviour
             Hedeflerr_UI[i].Hedef.SetActive(true);
             Hedeflerr_UI[i].HedefGorsel.sprite = Hedeflerr[i].HedefGorsel;
             Hedeflerr_UI[i].HedefDegerText.text = Hedeflerr[i].TopDegeri.ToString();
+            if (Hedeflerr[i].HedefTuru == "Top")
+            {
+                TopHedefiVarmi = true;
+                TopDegeri = Hedeflerr[i].TopDegeri;
+            }else if (Hedeflerr[i].HedefTuru == "Kutu")
+            {
+                KutuHedefiVarmi = true;
+                KutuDegeri = Hedeflerr[i].TopDegeri;
+            }
         }
 
     }
@@ -168,11 +179,29 @@ public class GameManager : MonoBehaviour
         KutuKirilmaEfektleri[KutuKirilmaEfektIndex].gameObject.SetActive(true);
         PatlamaEfekt.Play();
 
+
+        if (KutuHedefiVarmi)
+        {
+            KutuDegeri--;
+            if (KutuDegeri == 0)
+            {
+                Hedeflerr_UI[1].GorevTamam.SetActive(true);
+            }
+        }
+
         if (KutuKirilmaEfektIndex == KutuKirilmaEfektleri.Length - 1)
             KutuKirilmaEfektIndex = 0;
         else
             KutuKirilmaEfektIndex++;
 
+    }
+
+    public void GorevSayiKontrol(int sayi)
+    {
+        if (sayi == TopDegeri)
+        {
+            Hedeflerr_UI[0].GorevTamam.SetActive(true);
+        }
     }
 
     
