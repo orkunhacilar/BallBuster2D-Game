@@ -17,12 +17,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject TopAtici;
     [SerializeField] private GameObject TopSoketi;
     [SerializeField] private GameObject GelecekTop;
+    GameObject SeciliTop;
 
 
     void Start()
     {
         KalanTopSayisi = Toplar.Length;
-        TopGetir();
+        TopGetir(true);
     }
     // 2-Kirmizi
     // 4-Sari
@@ -57,13 +58,57 @@ public class GameManager : MonoBehaviour
             Debug.DrawRay(ray.origin, ray.direction * 10, Color.yellow);
         }
 
+        if (Input.GetMouseButtonUp(0)) // parmagi mousedan cekersen
+        {
+            SeciliTop.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic; // top asaya dussun diye degistirdik
+            SeciliTop.transform.parent = null; // top asaya duserken parenttan kurtulsun.
+            SeciliTop.GetComponent<Top>().BirincilDurumDegistir();
+            TopGetir(false);
+        }
+
         
     }
 
-    void TopGetir()
+    void TopGetir(bool IlkKurulum)
     {
-        Toplar[HavuzIndex].transform.SetParent(TopAtici.transform);
-        Toplar[HavuzIndex].transform.position = TopSoketi.transform.position;
-        Toplar[HavuzIndex].SetActive(true);
+        if (IlkKurulum)
+        {
+            Toplar[HavuzIndex].transform.SetParent(TopAtici.transform);
+            Toplar[HavuzIndex].transform.position = TopSoketi.transform.position;
+            Toplar[HavuzIndex].SetActive(true);
+            SeciliTop = Toplar[HavuzIndex];
+
+            HavuzIndex++;
+
+            Toplar[HavuzIndex].transform.position = GelecekTop.transform.position;
+            Toplar[HavuzIndex].SetActive(true);
+            KalanTopSayisiText.text = KalanTopSayisi.ToString();
+        }
+        else
+        {
+            if (Toplar.Length != 0)
+            {
+                Toplar[HavuzIndex].transform.SetParent(TopAtici.transform);
+                Toplar[HavuzIndex].transform.position = TopSoketi.transform.position;
+                Toplar[HavuzIndex].SetActive(true);
+                SeciliTop = Toplar[HavuzIndex];
+
+                KalanTopSayisi--;
+                KalanTopSayisiText.text = KalanTopSayisi.ToString();
+
+                if(HavuzIndex == Toplar.Length - 1)
+                {
+                    Debug.Log("Bitti");
+                }
+                else
+                {
+                    HavuzIndex++;
+                    Toplar[HavuzIndex].transform.position = GelecekTop.transform.position;
+                    Toplar[HavuzIndex].SetActive(true);
+                }
+
+            }
+        }
+        
     }
 }

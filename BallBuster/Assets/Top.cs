@@ -25,7 +25,7 @@ public class Top : MonoBehaviour
         Birincil = true;
     }
 
-    void BirincilDurumDegistir()
+    public void BirincilDurumDegistir()
     {
         Invoke("DurumuAyarla", 2f);
     }

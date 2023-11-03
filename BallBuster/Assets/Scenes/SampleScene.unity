@@ -30704,12 +30704,6 @@ MonoBehaviour:
   - {fileID: 1515723291}
   - {fileID: 235217546}
   - {fileID: 1713003480}
-  - {fileID: 2101445552}
-  - {fileID: 1991366690}
-  - {fileID: 2010492234}
-  - {fileID: 491868282}
-  - {fileID: 2048096763}
-  - {fileID: 604743498}
   KalanTopSayisiText: {fileID: 274747398}
   TopAtici: {fileID: 1088520747}
   TopSoketi: {fileID: 1968541045}
@@ -87010,7 +87004,7 @@ Transform:
   m_GameObject: {fileID: 1352630392}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
