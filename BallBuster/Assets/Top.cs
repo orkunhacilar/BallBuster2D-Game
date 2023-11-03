@@ -13,11 +13,15 @@ public class Top : MonoBehaviour
     [SerializeField] SpriteRenderer _Renderer;
 
     bool Birincil;
+    [SerializeField] private bool VarsayilanTop;
 
     // Start is called before the first frame update
     void Start()
     {
         SayiText.text = Sayi.ToString();
+
+        if (VarsayilanTop)
+            Birincil = true;
     }
 
     public void DurumuAyarla()
