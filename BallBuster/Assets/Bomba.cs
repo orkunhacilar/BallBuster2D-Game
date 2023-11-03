@@ -38,8 +38,17 @@ public class Bomba : MonoBehaviour
 
         foreach (var item in colliders)
         {
-            //yukarda colliders icine zaten etkilesime gecicegim objeleri toplamistim simdi onlarin hepsine bomba efekti uygulamak icin guc uyguluyorum.
-            item.gameObject.GetComponent<Rigidbody2D>().AddForce(90 * new Vector2(0, 6), ForceMode2D.Force);
+            if (item.gameObject.CompareTag("Kutu"))
+            {
+                item.GetComponent<Kutu>().EfektOynat();
+            }
+            else
+            {
+                //yukarda colliders icine zaten etkilesime gecicegim objeleri toplamistim simdi onlarin hepsine bomba efekti uygulamak icin guc uyguluyorum.
+                item.gameObject.GetComponent<Rigidbody2D>().AddForce(90 * new Vector2(0, 6), ForceMode2D.Force);
+
+            }
+
         }
 
     }

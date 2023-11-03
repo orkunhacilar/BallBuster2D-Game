@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 
     [Header("---DIGER OBJELER")]
     [SerializeField] private ParticleSystem PatlamaEfekt;
+    [SerializeField] private ParticleSystem[] KutuKirilmaEfektleri;
+    int KutuKirilmaEfektIndex;
 
     [Header("---TOP ATIS SISTEMI")]
     [SerializeField] private GameObject TopAtici;
@@ -120,4 +122,19 @@ public class GameManager : MonoBehaviour
         PatlamaEfekt.gameObject.SetActive(true);
         PatlamaEfekt.Play();
     }
+
+    public void KutuParcalanmaEfekt(Vector2 Pozisyon)
+    {
+        KutuKirilmaEfektleri[KutuKirilmaEfektIndex].gameObject.transform.position = Pozisyon;
+        KutuKirilmaEfektleri[KutuKirilmaEfektIndex].gameObject.SetActive(true);
+        PatlamaEfekt.Play();
+
+        if (KutuKirilmaEfektIndex == KutuKirilmaEfektleri.Length - 1)
+            KutuKirilmaEfektIndex = 0;
+        else
+            KutuKirilmaEfektIndex++;
+
+    }
+
+    
 }
